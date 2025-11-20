@@ -1,19 +1,20 @@
 ### Spring Grade & Rank Services
 
-A full-stack Spring-based platform showcasing configurable grading logic, student ranking computation, and RESTful microservices deployment.
-This project evolves from traditional Spring Bean configuration to modern Spring Boot and Dockerized microservices, demonstrating code reuse, IoC, REST APIs, and lightweight deployment pipelines.
+Spring-grade-rank-services is a modular platform that demonstrates how grading and ranking logic can be built, reused, and deployed across multiple enterprise-level frameworks. The project progressively evolves the same business logic through classic Spring configuration, Spring Boot microservices, OSGi modular services, and finally Docker-based microservice containers. It shows how a simple domain problem like grade and rank computation can be implemented as an extensible and distributed set of services across modern backend technologies.
 
 ### 🧩 Project Overview
 
-The platform implements a Grade and Rank computation system in three progressive layers:
+The platform begins with a traditional Spring bean configuration that encapsulates grading logic. A Grade bean converts numerical scores into letter grades by applying interval rules defined in XML configuration. The logic is intentionally designed to highlight inversion of control, dependency injection, and reusable Spring components.
 
-   - rank-spring – Classic Spring XML configuration with IoC and bean wiring.
+Building on this, the ranking component introduces additional computation. The Rank bean accepts a list of scores, sorts them in descending order, and determines the ranking position of a target value. This demonstrates how multiple Spring beans can collaborate and how XML configuration wires reusable components together. The outcome is a working grade and rank system that operates as a standalone Spring application.
 
-   - rank-spring-boot – REST microservice built with Spring Boot, exposing /grade and /rank endpoints.
+The same logic is then migrated into a Spring Boot microservice. Instead of running from the command line, the grading and ranking functions are exposed as REST endpoints such as /grade/{score} and /rank/{score}. This transforms the earlier Spring components into a lightweight HTTP service that can be consumed by external applications or frontend clients. It reflects the modern shift from monolithic Spring XML applications to self-contained REST microservices.
 
-   - rank-spring-boot-ms – Containerized version of the microservice using Docker for isolated deployment.
+The platform is expanded further through OSGi, where the grading and ranking logic is separated into deployable service bundles. One bundle provides the statistical service interface, another consumes it, and a third exposes the results via a web layer. This demonstrates modularity, dynamic service registration, and runtime component replacement, all key features of OSGi-based enterprise systems. It shows how the same computation can be decomposed into interchangeable service units.
 
-Each layer reuses the same business logic (GradeImpl, RankImpl) to illustrate modular Spring application design.
+Finally, the system is containerized into Docker-based microservices. The Spring Boot service is packaged as a Docker image, allowing it to run in an isolated and reproducible environment. The assignment also includes a separate Python microservice that performs predictions based on models from earlier work, further validating the interoperability of microservices written in different languages. These Docker services reflect real-world deployment pipelines where independent components are orchestrated and scaled in container environments.
+
+Across all stages, the business logic remains the same, but the architecture evolves. This highlights how enterprise developers reuse and migrate logic as systems move from classic Spring to modern microservices, OSGi modularity, and containerized deployment.
 
 ### 📁 Project Structure
 ```bash
